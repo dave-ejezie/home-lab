@@ -85,7 +85,8 @@ graph TB
 |--------------|----------|--------|------|
 | **CompTIA A+** | CompTIA | ✅ Passed | [Verify on Credly](https://www.credly.com/badges/2b2096cf-ba6a-4a5f-8313-24684a7d549e/public_url) |
 | **MS-900** Microsoft 365 Fundamentals | Microsoft | ✅ Passed | [Verify on Microsoft Learn](https://learn.microsoft.com/api/credentials/share/en-gb/davest9496/7D55A4BFDCF4726?sharingId=8FEDAD1DD7CDEED9) |
-| **ITIL 4 Foundation** | PeopleCert | 📅 Scheduled — April 2026 | — |
+| **ITIL 4 Foundation** | PeopleCert | ✅ Passed | — |
+| **AZ-104** Microsoft Azure Administrator | Microsoft | 🔄 In Progress | — |
 
 ---
 
