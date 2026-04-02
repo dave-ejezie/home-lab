@@ -2,9 +2,11 @@
 
 > **Aspiring IT Support Analyst** based in London, building real-world help desk and sysadmin skills through a fully virtualised lab environment. Targeting MSP and IT support roles with hands-on experience in Active Directory, networking, ITIL-aligned incident management, and Microsoft 365 administration.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Dave_Ejezie-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dave-ejezie-896798b9/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Dave_Ejezie-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dave-ejezie)
 [![CompTIA A+](https://img.shields.io/badge/CompTIA-A%2B_Certified-E01E28?style=for-the-badge&logo=comptia&logoColor=white)](https://www.credly.com/badges/2b2096cf-ba6a-4a5f-8313-24684a7d549e/public_url)
 [![MS-900](https://img.shields.io/badge/Microsoft-MS--900_Passed-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/api/credentials/share/en-gb/davest9496/7D55A4BFDCF4726?sharingId=8FEDAD1DD7CDEED9)
+[![ITIL 4](https://img.shields.io/badge/PeopleCert-ITIL_4_Certified-003366?style=for-the-badge&logo=book&logoColor=white)](https://peoplecert.org)
+[![AZ-104](https://img.shields.io/badge/Microsoft-AZ--104_In_Progress-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/)
 
 ---
 
