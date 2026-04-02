@@ -98,6 +98,7 @@ home-lab/
 ├── AD-DS/
 │   ├── README.md                     # AD-DS setup walkthrough + screenshots
 │   └── screenshots/                  # All AD-DS setup screenshots
+├── helpdesk-scripts/                 # PowerShell and Python helpdesk tools
 └── kb-articles/                      # Knowledge base articles (7 planned)
     ├── account-lockout.md
     ├── gpo-management.md

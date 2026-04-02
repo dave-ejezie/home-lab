@@ -181,17 +181,4 @@ Move-ADDirectoryServer -Identity "DC01" -Site "London-HQ"
 
 ---
 
-### Incident Log Reporter
-
-The `incident_log_reporter.py` script generates shift reports summarising daily ticket activity — broken down by priority (P1/P2/P3), category, and status.
-
-<details>
-<summary>📸 Sample shift report output</summary>
-
-![Incident log reporter output](screenshots/incident-log-script.png)
-
-</details>
-
----
-
 *Last updated: 20 March 2026*
