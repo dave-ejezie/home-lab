@@ -4,7 +4,7 @@
 
 ---
 
-## ✅ Phase 0 — Environment Setup & GitHub (17–21 Mar)
+## ✅ Phase 0 — Environment Setup & GitHub
 
 - Provisioned DC01 (Windows Server 2022, 8 GB RAM) and CLIENT01 (Windows 11, 4 GB RAM) on UTM
 - Installed AD DS and DNS Server roles on DC01
@@ -18,7 +18,7 @@
 
 ---
 
-## 🔄 Phase 1 — Active Directory & Identity (21–28 Mar)
+## 🔄 Phase 1 — Active Directory & Identity
 
 *In progress*
 
@@ -30,7 +30,7 @@
 
 ---
 
-## 🔜 Phase 2 — Networking (28 Mar–1 Apr)
+## 🔜 Phase 2 — Networking
 
 - [ ] Dual-VLAN in Packet Tracer (IT + HR departments)
 - [ ] DHCP troubleshooting (169.x.x.x investigation)
@@ -39,7 +39,7 @@
 
 ---
 
-## 🔜 Phase 3 — ITIL 4 Incident Management (1–5 Apr)
+## 🔜 Phase 3 — ITIL 4 Incident Management
 
 - [ ] Daily incident queue (5–8 tickets/day for 5 days)
 - [ ] P1 major incident simulation (DC01 unreachable)
@@ -48,14 +48,14 @@
 
 ---
 
-## 🔜 Phase 4 — Microsoft 365 & Admin Centre (6–7 Apr)
+## 🔜 Phase 4 — Microsoft 365 & Admin Centre
 
 - [ ] M365 Admin Centre tasks (user creation, licensing, groups, password reset)
 - [ ] AD vs Entra ID comparison
 
 ---
 
-## 🔜 Phase 5 — MSP Scenarios & Portfolio Polish (7–10 Apr)
+## 🔜 Phase 5 — MSP Scenarios & Portfolio Polish
 
 - [ ] Multi-client simultaneous support drill
 - [ ] Final KB articles: Onboarding + Offboarding
