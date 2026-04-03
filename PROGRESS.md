@@ -22,7 +22,10 @@
 
 *In progress*
 
-- [ ] Daily onboarding drills (5 users across departments)
+- [x] Daily onboarding drills (5 users across departments)
+  - Created 5 staff accounts across department OUs using `onboard-user.ps1`.
+  - Created 5 security groups (`GRP_IT`, `GRP_HR`, `GRP_Finance`, `GRP_Sales`, `GRP_AllStaff`) and assigned users.
+  - Learned: splatting (`@HashTable`), `ConvertTo-SecureString`, Execution Policy/Zone Identifier, `-replace` operator, output buffering.
 - [ ] Account lockout investigation (Event ID 4740)
 - [ ] GPO configuration (password policy, mapped drives, Control Panel restriction)
 - [ ] Offboarding drill

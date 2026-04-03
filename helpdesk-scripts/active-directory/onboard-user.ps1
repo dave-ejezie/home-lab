@@ -56,6 +56,8 @@ param(
 # ── Configuration ──────────────────────────────────────────────────────────────
 # Update these values to match your domain
 $DomainDN        = "DC=helpdesk,DC=lab"
+# NOTE: Forced string password used here ONLY for batch user creation in the lab environment.
+# In a live environment, securely generate a random password, or use Entra ID Temporary Access Passes (TAP).
 $DefaultPassword = ConvertTo-SecureString "Welcome123!" -AsPlainText -Force
 $LogDirectory    = "C:\Logs\Helpdesk"
 $LogFile         = "$LogDirectory\onboarding_$(Get-Date -Format 'yyyy-MM-dd').log"
