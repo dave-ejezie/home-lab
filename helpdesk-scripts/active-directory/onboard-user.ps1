@@ -16,7 +16,7 @@
     User's last name
 
 .PARAMETER Department
-    Department name. Must match an existing OU under OU=Users (e.g. Finance, IT, HR, Operations)
+    Department name. Must match an existing OU under OU=_STAFF (e.g. Finance, IT, HR, Sales)
 
 .PARAMETER JobTitle
     User's job title (optional)
@@ -43,7 +43,7 @@ param(
     [Parameter(Mandatory = $true,  HelpMessage = "User's last name")]
     [string]$LastName,
 
-    [Parameter(Mandatory = $true,  HelpMessage = "Department OU name (Finance, IT, HR, Operations)")]
+    [Parameter(Mandatory = $true,  HelpMessage = "Department OU name (Finance, IT, HR, Sales)")]
     [string]$Department,
 
     [Parameter(Mandatory = $false, HelpMessage = "Job title (optional)")]
@@ -89,7 +89,7 @@ $SAMAccountName = ($FirstName.Substring(0, 1) + $LastName).ToLower() -replace '[
 if ($SAMAccountName.Length -gt 20) { $SAMAccountName = $SAMAccountName.Substring(0, 20) }
 $UPN         = "$SAMAccountName@helpdesk.lab"
 $DisplayName = "$FirstName $LastName"
-$OU          = "OU=$Department,OU=Users,$DomainDN"
+$OU          = "OU=$Department,OU=_STAFF,$DomainDN"
 
 Write-Log "Generated SAMAccountName: $SAMAccountName"
 Write-Log "UPN: $UPN"
