@@ -78,6 +78,7 @@ graph TB
 | 5 | [P1 Major Incident Procedure](kb-articles/p1-major-incident.md) | Phase 3 | 🔜 Skeleton |
 | 6 | [User Onboarding Procedure](kb-articles/onboarding.md) | Phase 5 | 🔜 Skeleton |
 | 7 | [User Offboarding Procedure](kb-articles/offboarding.md) | Phase 5 | 🔜 Skeleton |
+| 8 | [DNS Domain Join Failure](kb-articles/dns-domain-join-failure.md) | Phase 1 | ✅ Complete |
 
 ---
 
@@ -109,7 +110,8 @@ home-lab/
     ├── dns-troubleshooting.md
     ├── p1-major-incident.md
     ├── onboarding.md
-    └── offboarding.md
+    ├── offboarding.md
+    └── dns-domain-join-failure.md
 ```
 
 ---
