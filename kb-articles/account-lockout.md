@@ -19,41 +19,39 @@
 
 ## Resolution Steps
 
-1. Open PowerShell as Administrator on DC01
+1. Open PowerShell as Administrator on DC01 or launch Windows Admin Center.
 2. Identify all locked accounts:
    ```powershell
    Search-ADAccount -LockedOut | Select Name, SamAccountName, LockedOut
    ```
-3. Check Event Viewer for the source machine:
-   - Event Viewer → Windows Logs → Security
-   - Filter for **Event ID 4740** (Account Lockout)
-   - Note the **Caller Computer Name** — this is where the bad attempts came from
+3. **CRITICAL:** Find the source machine of the lockout before unlocking.
+   Rather than manually filtering the Event Viewer GUI, run this optimized command to pull **Event ID 4740** directly:
+   ```powershell
+   Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4740} | Select-Object -First 1 | Format-List
+   ```
+   *Look for `Caller Computer Name` in the output to identify the rogue device.*
+   ![PowerShell Lockout Investigation](../AD-DS/Activities/screenshots/dc01-powershell-investigation.png)
+
 4. Unlock the account:
    ```powershell
    Unlock-ADAccount -Identity "username"
    ```
-5. Verify the unlock:
-   ```powershell
-   Get-ADUser -Identity "username" -Properties LockedOut | Select Name, LockedOut
-   ```
-6. Contact the user and confirm they can log in
-7. If the lockout came from an unexpected machine, investigate further (possible credential stuffing or stale session)
+5. Contact the user, inform them of the source device (e.g. "Do you have your Outlook open on CLIENT01?"), and clear any cached credentials on that device.
 
 ## Prevention
 
 - Educate users on password best practices
-- Check for cached/saved credentials on secondary devices after a password change
-- Review lockout threshold policy — 5 attempts is standard but can be adjusted if false positives are frequent
+- Clear stale credentials from Windows Credential Manager or Mobile Mail Apps after a password change.
 - Consider implementing self-service password reset (e.g. Microsoft SSPR)
 
-## osTicket Logging
+## ServiceNow Logging
 
-- **Ticket Priority:** P2
-- **Category:** Access Control
-- **Resolution Notes:** Document the locked account, source machine (from Event ID 4740), and unlock action taken
-- **Close ticket** with steps followed and user confirmation
+- **Ticket Priority:** P3
+- **Category:** Account & Access
+- **Resolution Notes:** Must document the `Caller Computer Name` discovered via Event ID 4740. 
+  *(Example: Investigated Security Logs via DC01. Found account locked out by CLIENT01. Cleared cached credentials on CLIENT01. Unlocked account. Confirmed access restored.)*
 
 ## Related
 
-- KB-002: GPO Management Guide (Password Policy GPO)
-- Event ID reference: 4740 (lockout), 4625 (failed logon), 4767 (account unlocked)
+- 🖥️ [Activity: Diagnosing Account Lockouts & Root Cause Analysis](../AD-DS/Activities/06-Account-Lockouts/README.md)
+- Event ID reference: **4740 (lockout)**, 4625 (failed logon), 4767 (account unlocked)

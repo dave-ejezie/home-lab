@@ -24,7 +24,7 @@ Before joining a client to the domain, you must verify:
 
 ---
 
-## ITIL 4 Alignment: Release and Deployment Management
+## ITIL Alignment & The "Why"
 
 Joining a computer to a domain is a critical step in **Release and Deployment Management** as well as **Service Configuration Management**. When a device joins a domain, it transitions from being an unmanaged, standalone node to an official managed Configuration Item (CI) within the organisation's IT infrastructure.
 
@@ -33,7 +33,7 @@ Joining a computer to a domain is a critical step in **Release and Deployment Ma
 
 ---
 
-## Execution: The Domain Join Process
+## Execution: Setup & Investigation
 
 The process of joining `CLIENT01` was executed via PowerShell.
 
@@ -88,6 +88,17 @@ This process was not without its real-world hurdles. During the initial setup, `
 
 > **See the full Root Cause Analysis and Resolution in the KB:**
 > 📋 [KB-008: DNS Domain Join Failure (IPv6 & Routing Conflict)](../../../kb-articles/dns-domain-join-failure.md)
+
+---
+
+## Final Service Request Resolution Report
+
+> **ServiceNow Request:** SR001962  
+> **Category:** Hardware | **Subcategory:** Workstation Deployment  
+> **Priority:** P3  
+>   
+> **Resolution Notes:**  
+> New workstation deployment required for Service Desk (`CLIENT01`). Deployed Windows 11 host and verified network connectivity. Investigated initial DNS resolution failure and resolved routing conflict (see KB-008). Executed domain join via PowerShell and manually placed Configuration Item (CI) into the correct management OU. Validated success by enforcing password change on first domain login for test user. Resolving request.
 
 ---
 

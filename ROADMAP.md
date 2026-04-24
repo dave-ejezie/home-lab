@@ -19,15 +19,15 @@
 **Competencies**
 - [ ] Diagnose a lockout and find the source machine using Event ID 4740
 - [x] Know the difference between unlocking an account and resetting a password *(Proven)*
-- [ ] Delegate service desk rights without granting Domain Admin
+- [x] Delegate service desk rights without granting Domain Admin
 - [x] Understand NTFS permissions vs share permissions *(Proven via Security Groups)*
 - [x] Use PowerShell for AD tasks, not just the GUI *(Proven via Automation)*
 
 **Supporting Labs**
 - [x] **Lab 1.1** - Password Reset Scenarios
-- [ ] **Lab 1.2** - Diagnosing Account Lockouts
+- [x] **Lab 1.2** - Diagnosing Account Lockouts
 - [x] **Lab 1.3** - Security Group & Access Management
-- [ ] **Lab 1.4** - Delegating Password Reset / Least Privilege
+- [x] **Lab 1.4** - Delegating Password Reset / Least Privilege
 - [x] **Lab 1.5** - Automated User Provisioning (`onboard-user.ps1`)
 - [x] **Lab 1.6** - Windows Admin Center Deployment (Centralised web management)
 - [ ] **GPOs** - Configuration (password policy, mapped drives)

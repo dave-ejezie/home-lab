@@ -27,7 +27,7 @@ Before running this activity, the following must be in place:
 
 ---
 
-## ITIL 4 Alignment: Service Request Management & Standard Changes
+## ITIL Alignment & The "Why"
 
 User onboarding is one of the most frequently repeated tasks handled by a Service Desk. By scripting this process, we treat it not as a one-off manual task, but as a **Standard Change** — a pre-approved, repeatable, low-risk procedure with a predictable outcome.
 
@@ -37,7 +37,7 @@ User onboarding is one of the most frequently repeated tasks handled by a Servic
 
 ---
 
-## Step-by-Step Walkthrough
+## Execution: Script Deployment
 
 ### Step 1: Run the Script for Each User
 
@@ -152,6 +152,17 @@ All 5 users confirmed in correct OUs with correct attributes:
 | `execution of scripts is disabled` | PowerShell Execution Policy blocking the script | Run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` |
 | `Unblock-File` needed | Script downloaded from internet has a Zone Identifier | Run `Unblock-File -Path C:\Scripts\onboard-user.ps1` |
 | User created but not in correct group | Group existed under a different name | Check group names are `GRP_IT`, `GRP_HR` etc. — exact match required |
+
+---
+
+## Final Service Request Resolution Report
+
+> **ServiceNow Request:** SR001944  
+> **Category:** Access Management | **Subcategory:** New Starter Onboarding  
+> **Priority:** P3  
+>   
+> **Resolution Notes:**  
+> HR successfully logged a Standard Change request for 5 bulk user onboardings. To prevent manual data entry errors and ensure consistent downstream attribute population, executed automated `onboard-user.ps1` PowerShell script. Validated target OUs and automatic Security Group bindings successfully applied. Verified deployment via `Get-ADUser`. Handed secure credentials to line managers. Resolving request.
 
 ---
 

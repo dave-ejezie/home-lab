@@ -14,14 +14,14 @@ To deploy Windows Admin Center (WAC) on the Domain Controller (`DC01`) and acces
 
 ---
 
-## ITIL 4 Alignment: Service Request Management & Service Desk
+## ITIL Alignment & The "Why"
 In an enterprise environment, 1st-line support teams handle high volumes of routine service requests: password resets, account unlocks, and group membership changes. 
 
 RDP access to Domain Controllers is typically restricted for junior engineers due to security risks. Deploying a web-based management tier like Windows Admin Center (WAC) aligns with **Service Desk** best practices by providing a secure, delegated access method to fulfill these standard service requests rapidly and safely.
 
 ---
 
-## Execution: Deployment and Configuration
+## Execution: Setup & Investigation
 
 ### Step 1: WAC Access
 Windows Admin Center was installed on `DC01` and configured to run as a gateway server securely.
@@ -64,6 +64,17 @@ We also verified and managed `jcarter`'s access rights. The interface clearly di
 ![Group Membership Summary](../screenshots/WAC-jcarter-membership.png)
 
 > **Why this matters:** Fulfilling this request via WAC took seconds and required no direct server RDP access. This demonstrates an understanding of modern enterprise support workflows, focusing on reduced Mean Time to Resolution (MTTR) and adherence to the principle of least privilege. Furthermore, having **Event Logs** and **Services** (like the print spooler) accessible in the same browser tab means 90% of daily 1st-line tickets can be resolved without ever logging onto the Domain Controller.
+
+---
+
+## Final Service Request Resolution Report
+
+> **ServiceNow Request:** SR001988  
+> **Category:** Software | **Subcategory:** Infrastructure Utility Deployment  
+> **Priority:** P3  
+>   
+> **Resolution Notes:**  
+> Deployed Windows Admin Center (WAC) on DC01 to act as a secure management gateway. Verified access from CLIENT01 web browser. Successfully installed the Active Directory module allowing 1st-line Service Desk agents to perform basic IAM tasks (password resets, block checks) without RDP access to the Domain Controller. Tested functionality by viewing properties for `jcarter`. Resolving request.
 
 ---
 

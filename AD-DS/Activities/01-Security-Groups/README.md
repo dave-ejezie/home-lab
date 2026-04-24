@@ -25,7 +25,7 @@ Before running this activity, the following must be in place:
 
 ---
 
-## ITIL 4 Alignment: Information Security Management
+## ITIL Alignment & The "Why"
 
 In alignment with the ITIL 4 **Information Security Management** practice, proper RBAC is critical for maintaining the confidentiality, integrity, and availability of enterprise infrastructure.
 
@@ -77,7 +77,7 @@ graph TD
 
 ---
 
-## Step-by-Step Walkthrough
+## Execution: Setup & Investigation
 
 ### Step 1: Define the Target Location
 
@@ -198,6 +198,17 @@ GRP_AllStaff: James Carter, Sarah Mitchell, Michael Osei, Emma Thompson, Priya S
 | `Access is denied` | Not running as Administrator | Right-click PowerShell → **Run as Administrator** |
 | Group created but not showing in ADUC | ADUC needs refreshing | Press F5 in ADUC, or run the verification query again |
 | `New-ADGroup: The specified group already exists` | Group was already created | Run `Get-ADGroup "GRP_IT"` to confirm — no action needed |
+
+---
+
+## Final Service Request Resolution Report
+
+> **ServiceNow Request:** SR001923  
+> **Category:** Infrastructure | **Subcategory:** IAM (Identity & Access Management)  
+> **Priority:** P4  
+>   
+> **Resolution Notes:**  
+> Request received to standardise Active Directory security groups across core departments (IT, HR, Finance, Sales). Built Global `Security` Groups following AGDLP RBAC methodology to ensure explicit permission boundary control and reduce manual assignment errors. Automated group creation and validated deployment via `Get-ADGroup`. Resolving ticket.
 
 ---
 
