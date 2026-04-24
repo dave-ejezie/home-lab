@@ -94,4 +94,5 @@ This process was not without its real-world hurdles. During the initial setup, `
 ## Related
 
 - 🔐 [Activity: Group Policy Objects](../03-Group-Policies/README.md)
+- 🖥️ [Activity: Deploying Windows Admin Center](../05-Windows-Admin-Center/README.md)
 - 📋 [KB-008: DNS Domain Join Failure](../../../kb-articles/dns-domain-join-failure.md)
