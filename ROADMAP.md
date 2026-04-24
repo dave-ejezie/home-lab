@@ -17,7 +17,7 @@
 ## 🔄 Phase 1 — Active Directory — Password Resets & Permissions
 
 **Competencies**
-- [ ] Diagnose a lockout and find the source machine using Event ID 4740
+- [x] Diagnose a lockout and find the source machine using Event ID 4740
 - [x] Know the difference between unlocking an account and resetting a password *(Proven)*
 - [x] Delegate service desk rights without granting Domain Admin
 - [x] Understand NTFS permissions vs share permissions *(Proven via Security Groups)*
@@ -30,7 +30,7 @@
 - [x] **Lab 1.4** - Delegating Password Reset / Least Privilege
 - [x] **Lab 1.5** - Automated User Provisioning (`onboard-user.ps1`)
 - [x] **Lab 1.6** - Windows Admin Center Deployment (Centralised web management)
-- [ ] **GPOs** - Configuration (password policy, mapped drives)
+- [x] **GPOs** - Configuration (password policy, mapped drives)
 
 
 ---

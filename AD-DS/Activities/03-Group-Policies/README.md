@@ -1,94 +1,65 @@
-# 🔐 Activity: Group Policy Objects (GPOs)
+# 🔐 Activity: Group Policy Objects & Network Shares
 
 | Field | Value |
 |---|---|
-| **Environment** | helpdesk.lab — Windows Server 2022 |
-| **Tool Used** | Group Policy Management Console (GPMC) |
-| **Status** | 🔄 In Progress |
-| **Date** | 2026-04-03 |
+| **Environment** | `helpdesk.lab` — Server 2022 (Host) / Windows 11 (Client) |
+| **Tool Used** | Group Policy Management Console (GPMC) / File Explorer |
+| **Status** | ✅ Complete |
+| **Date** | 24 April 2026 |
 
 ---
 
 ## Objective
-Configure domain-wide Group Policy Objects (GPOs) using the Group Policy Management Console (GPMC) to enforce security settings and push configurations to users and computers automatically.
+To deploy a secure departmental network file share (`ITShare`) by distinctly configuring Share vs. NTFS permissions, and deploying it automatically to endpoint workstations using Group Policy Objects (GPOs).
 
 ---
 
-## Prerequisites
-
-Before configuring GPOs, the following must be in place:
-
-- [ ] AD DS role installed and DC01 promoted to Domain Controller
-- [ ] OU structure exists — `OU=_STAFF`, `OU=_COMPUTERS`, `OU=_GROUPS`
-- [ ] User accounts and groups created (see [Activity: Batch User Creation](../02-User-Creation/README.md))
-- [ ] GPMC installed (`Add-WindowsFeature GPMC` or via Server Manager)
-
----
-
-## ITIL 4 Alignment: Service Configuration Management
-
+## ITIL Alignment & The "Why"
 GPOs are the backbone of centralised endpoint management, aligning directly with the ITIL 4 **Service Configuration Management** practice. Instead of visiting each machine individually to change a setting, a GPO lets you define a rule once and have it apply automatically to hundreds of devices or users.
 
-- **Why GPOs matter:** Without GPOs, every machine in a domain is configured independently — meaning any technician could accidentally change a setting or install software that violates policy. GPOs enforce a consistent, auditable baseline across all Configuration Items (CIs).
-- **LSDOU Processing Order:** GPOs are applied in a specific order — Local → Site → Domain → OU. Understanding this hierarchy prevents policy conflicts. We link GPOs directly to specific OUs (e.g., `OU=_STAFF`) rather than the root domain to avoid accidentally applying restrictive settings to Domain Controllers or service accounts.
-
-> **Plain English:** Think of GPOs like company-wide rules that are automatically enforced the moment a staff member logs in. Instead of emailing everyone "please set your screensaver to lock after 5 minutes," you create one GPO and it happens for everyone, automatically, every time.
-
-### GPO Processing Order (LSDOU)
-
-```mermaid
-flowchart TD
-    L["💻 Local Policy\n(Machine itself)"] --> S
-    S["🏢 Site Policy\n(London-HQ subnet)"] --> D
-    D["🌐 Domain Policy\n(helpdesk.lab root)"] --> O
-    O["📁 OU Policy\n(OU=_STAFF, OU=IT, etc.)"]
-
-    style L fill:#616161,color:#fff
-    style S fill:#5d4037,color:#fff
-    style D fill:#1a5276,color:#fff
-    style O fill:#117a65,color:#fff
-```
-
-> **Plain English:** Policies are applied in this exact order — later ones can override earlier ones. A policy set at the OU level is the most specific, so it wins over a conflicting domain-level setting. This is why we target `OU=_STAFF` directly instead of the domain root — it gives us precise, safe control.
+Furthermore, this lab demonstrates a foundational understanding of modern Access Control. By setting **Share Permissions** to "Everyone: Full Control", we open the "network front gate" to avoid generic connectivity errors. However, we strictly rely on **NTFS Security Permissions** (the "bedroom locks") tied to our Active Directory Security Group (`GRP_IT`) to truly secure the data. This guarantees zero-trust lateral separation between departments.
 
 ---
 
-## Planned GPO Configuration
+## Execution: Setup & Investigation
 
-The following GPOs are planned or in progress for the `helpdesk.lab` domain:
+### Step 1: Configuring Share vs. NTFS Permissions
+On the Domain Controller (`DC01`), a new folder named `ITShare` was created.
 
-| GPO Name | Linked To | Purpose | Status |
-|---|---|---|---|
-| Default Domain Password Policy | Domain root | Enforce minimum password length, complexity, and expiry | 🔄 Planned |
-| Map Network Drives | `OU=_STAFF` | Automatically map shared drives at login by department | 🔄 Planned |
-| Restrict Control Panel | `OU=_STAFF` | Prevent standard users from accessing system settings | 🔄 Planned |
+First, the network boundary (Share Permissions) was deliberately opened to `Everyone` to prevent share-level blocking.
+![Share Permissions - Everyone Full Control](../screenshots/ITShare-permission.png)
+
+Second, real security was enforced at the file-system level. The `Everyone` and `Domain Users` groups were removed. The Active Directory security group `GRP_IT` (created in Activity 01) was added and granted **Modify** rights. This ensures only IT staff have read/write access.
+![NTFS Security Permissions - GRP_IT](../screenshots/ITShare-security.png)
+
+### Step 2: Creating the Automation (GPO)
+With the secure folder staged, it needed pushing to end-users automatically to reduce manually mapped drive service desk requests.
+
+Inside **Group Policy Management Console (GPMC)**, a new GPO named `DriveMap-IT` was created and linked explicitly to the `IT` Organizational Unit. Linking to the lower-level OU ensures HR or Sales users never process this specific policy.
+![Linking the GPO](../screenshots/DriveMap-IT-GPO.png)
+
+The policy was edited under `User Configuration > Preferences > Windows Settings > Drive Maps`. The policy was dynamically configured to map the exact UNC path `\\DC01\ITShare` to the specific `I:` drive letter upon user logon.
+![Drive Map Configuration](../screenshots/drive-map-config.png)
+
+### Step 3: Verification on the Client
+To prove the enterprise automation worked, a test was performed on the `CLIENT01` endpoint. After running a `gpupdate /force` and restarting the workstation, `jcarter` (who resides in the IT OU and `GRP_IT` security group) logged in.
+
+Without any manual intervention, the network drive natively appeared inside File Explorer as the `I:` drive.
+![Mapped Drive Success on CLIENT01](../screenshots/jcarter-it-share-drive.png)
 
 ---
 
-## Process Evidence
+## Final Service Request Resolution Report
 
-### GUI Exploration — Group Scope Dialog
-During initial setup, the ADUC GUI was explored to understand the difference between Group Scopes (Domain Local, Global, Universal) and Group Types (Security vs Distribution) before switching to PowerShell automation:
-
-![ADUC New Object Dialog showing Group Scope and Type options](../screenshots/create-new-gpo-gui.png)
-
-> **Note:** This screenshot shows the "New Object – Group" dialog in ADUC. Actual GPO configuration screenshots (via GPMC) will be added here as each policy is built and tested.
-
----
-
-## Troubleshooting
-
-| Symptom | Likely Cause | Fix |
-|---|---|---|
-| GPO not applying to users | GPO linked to wrong OU | Open GPMC → confirm the GPO is linked to `OU=_STAFF` not the domain root |
-| Setting doesn't take effect after login | Cached policy | Run `gpupdate /force` on the client machine |
-| GPO applies to Domain Controllers unintentionally | Linked at domain root | Move the link to the specific OU, or add a WMI filter to exclude DCs |
-| GPO appears linked but has no effect | Policy not configured correctly | Run `gpresult /r` on the target machine to see applied policies |
+> **ServiceNow Request:** SR002105  
+> **Category:** Infrastructure | **Subcategory:** File Share & Access  
+> **Priority:** P4  
+>   
+> **Resolution Notes:**  
+> IT department required a centralized network share for tool storage. Created `\\DC01\ITShare`. Configured Share permissions to Everyone (Full Control) to allow unified routing, and enforced strict NTFS security permissions restricting access exclusively to the `GRP_IT` security group. Engineered a Group Policy Object (`DriveMap-IT`), linked it to the IT OU, and pushed an automated drive mapping targeting the `I:` letter. Verified deployment via virtual endpoint `CLIENT01`; mapping succeeded natively at user logon. Resolving request.
 
 ---
 
 ## Related
-
 - 🛡️ [Activity: Security Groups](../01-Security-Groups/README.md)
-- 👤 [Activity: Batch User Creation](../02-User-Creation/README.md)
-- 📋 [KB-006: User Onboarding Procedure](../../../kb-articles/onboarding.md)
+- 👤 [Activity: Delegating Control](../07-Delegation-Least-Privilege/README.md)
