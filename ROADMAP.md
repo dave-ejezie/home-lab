@@ -24,13 +24,14 @@
 - [x] Use PowerShell for AD tasks, not just the GUI *(Proven via Automation)*
 
 **Supporting Labs**
+- [x] **Lab 1.1** - Password Reset Scenarios
+- [ ] **Lab 1.2** - Diagnosing Account Lockouts
+- [x] **Lab 1.3** - Security Group & Access Management
+- [ ] **Lab 1.4** - Delegating Password Reset / Least Privilege
 - [x] **Lab 1.5** - Automated User Provisioning (`onboard-user.ps1`)
 - [x] **Lab 1.6** - Windows Admin Center Deployment (Centralised web management)
-- [x] **Lab 1.3** - Security Group & Access Management
-- [ ] **Lab 1.1** - Password Reset Scenarios
-- [ ] **Lab 1.2** - Diagnosing Account Lockouts
-- [ ] **Lab 1.4** - Delegating Password Reset / Least Privilege
 - [ ] **GPOs** - Configuration (password policy, mapped drives)
+
 
 ---
 
