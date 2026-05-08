@@ -6,7 +6,7 @@
 [![CompTIA A+](https://img.shields.io/badge/CompTIA-A%2B_Certified-E01E28?style=for-the-badge&logo=comptia&logoColor=white)](https://www.credly.com/badges/2b2096cf-ba6a-4a5f-8313-24684a7d549e/public_url)
 [![MS-900](https://img.shields.io/badge/Microsoft-MS--900_Passed-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/api/credentials/share/en-gb/davest9496/7D55A4BFDCF4726?sharingId=8FEDAD1DD7CDEED9)
 [![ITIL 4](https://img.shields.io/badge/PeopleCert-ITIL_4_Certified-003366?style=for-the-badge&logo=book&logoColor=white)](https://peoplecert.org)
-[![AZ-104](https://img.shields.io/badge/Microsoft-AZ--104_In_Progress-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/)
+[![CompTIA Network+](https://img.shields.io/badge/CompTIA-Network%2B_In_Progress-0078D4?style=for-the-badge&logo=comptia&logoColor=white)](https://www.comptia.org/certifications/network)
 
 ---
 
@@ -57,11 +57,11 @@ graph TB
 
 | Module | Description | Status |
 |--------|-------------|--------|
-| [**AD-DS**](AD-DS/) | Domain controller setup, OU structure, security groups, AD Sites & Services | ✅ Complete |
-| **Networking** | VLANs (Packet Tracer), DHCP & DNS troubleshooting | 🔜 Phase 2 |
-| **ITIL 4 Incident Management** | osTicket queue, P1 simulation, shift reports | 🔜 Phase 3 |
-| **Microsoft 365** | M365 Admin Centre, user lifecycle, Entra ID | 🔜 Phase 4 |
-| **MSP Scenarios** | Multi-client triage, interview prep drills | 🔜 Phase 5 |
+| [**AD-DS**](AD-DS/) | Domain controller setup, OU structure, security groups, AD Sites & Services | ✅ Phase 1 Complete |
+| [**M365 & Google Workspace**](M365-Google-Workspace/) | M365 Admin Centre, Hybrid Identity Sync, Exchange Admin | 🚧 Phase 2 Active |
+| **Ticketing Systems** | ServiceNow, Zendesk, Jira workflows and P1 simulation | 🔜 Phase 3 |
+| **Windows Troubleshooting** | Event Viewer, Top common fixes, Quick Assist | 🔜 Phase 4 |
+| **Network & Device Support** | DNS/DHCP break-fix, VPN config, Device Manager | 🔜 Phase 5 & 6 |
 
 ---
 
@@ -79,6 +79,7 @@ graph TB
 | 6 | [User Onboarding Procedure](kb-articles/onboarding.md) | Phase 5 | 🔜 Skeleton |
 | 7 | [User Offboarding Procedure](kb-articles/offboarding.md) | Phase 5 | 🔜 Skeleton |
 | 8 | [DNS Domain Join Failure](kb-articles/dns-domain-join-failure.md) | Phase 1 | ✅ Complete |
+| 9 | [Hyper-V Active Directory Lab Setup](kb-articles/hyper-v-lab-setup.md) | Phase 0 | ✅ Complete |
 
 ---
 
@@ -89,7 +90,7 @@ graph TB
 | **CompTIA A+** | CompTIA | ✅ Passed | [Verify on Credly](https://www.credly.com/badges/2b2096cf-ba6a-4a5f-8313-24684a7d549e/public_url) |
 | **MS-900** Microsoft 365 Fundamentals | Microsoft | ✅ Passed | [Verify on Microsoft Learn](https://learn.microsoft.com/api/credentials/share/en-gb/davest9496/7D55A4BFDCF4726?sharingId=8FEDAD1DD7CDEED9) |
 | **ITIL 4 Foundation** | PeopleCert | ✅ Passed | — |
-| **AZ-104** Microsoft Azure Administrator | Microsoft | 🔄 In Progress | — |
+| **CompTIA Network+** | CompTIA | 🔄 In Progress | — |
 
 ---
 
@@ -98,20 +99,27 @@ graph TB
 ```
 home-lab/
 ├── README.md                         ← You are here
-├── PROGRESS.md                       # Completed milestones by phase
-├── AD-DS/
-│   ├── README.md                     # AD-DS setup walkthrough + screenshots
-│   └── screenshots/                  # All AD-DS setup screenshots
-├── helpdesk-scripts/                 # PowerShell and Python helpdesk tools
-└── kb-articles/                      # Knowledge base articles (7 planned)
+├── ROADMAP.md                        # Master competencies & phases checklist
+├── AD-DS/                            # Phase 1: Local AD & Windows Server
+│   ├── 01-Security-Groups/
+│   ├── 02-User-Creation/
+│   ├── 03-Group-Policies/
+│   ├── 04-Domain-Join/
+│   ├── 05-Windows-Admin-Center/
+│   ├── 06-Account-Lockouts/
+│   └── 07-Delegation-Least-Privilege/
+├── M365-Google-Workspace/            # Phase 2: Cloud Admin & Hybrid Identity
+│   ├── 01-M365-Admin-Centre/
+│   ├── 02-Hybrid-AD-Connect/
+│   ├── 03-MFA-Reset/
+│   └── ...
+├── helpdesk-scripts/                 # PowerShell helpdesk tools
+├── rebuild-scripts/                  # Infrastructure and bulk user automation
+└── kb-articles/                      # Helpdesk Knowledge Base articles
     ├── account-lockout.md
-    ├── gpo-management.md
-    ├── dhcp-troubleshooting.md
-    ├── dns-troubleshooting.md
-    ├── p1-major-incident.md
-    ├── onboarding.md
-    ├── offboarding.md
-    └── dns-domain-join-failure.md
+    ├── dns-domain-join-failure.md
+    ├── hyper-v-lab-setup.md
+    └── ...
 ```
 
 ---
