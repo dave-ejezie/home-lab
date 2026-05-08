@@ -30,7 +30,7 @@
    Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4740} | Select-Object -First 1 | Format-List
    ```
    *Look for `Caller Computer Name` in the output to identify the rogue device.*
-   ![PowerShell Lockout Investigation](../AD-DS/Activities/screenshots/dc01-powershell-investigation.png)
+   ![PowerShell Lockout Investigation](../AD-DS/screenshots/dc01-powershell-investigation.png)
 
 4. Unlock the account:
    ```powershell
@@ -53,5 +53,5 @@
 
 ## Related
 
-- 🖥️ [Activity: Diagnosing Account Lockouts & Root Cause Analysis](../AD-DS/Activities/06-Account-Lockouts/README.md)
+- 🖥️ [Activity: Diagnosing Account Lockouts & Root Cause Analysis](../AD-DS/06-Account-Lockouts/README.md)
 - Event ID reference: **4740 (lockout)**, 4625 (failed logon), 4767 (account unlocked)

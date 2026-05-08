@@ -46,10 +46,10 @@ You can also verify the user's group memberships and target path via Active Dire
 Get-ADUser -Identity "jdoe" -Properties MemberOf
 ```
 
-**Evidence:** See [`AD-DS/Activities/02-User-Creation`](../AD-DS/Activities/02-User-Creation/README.md) for screenshots of all 5 successful onboarding runs and the final verification query.
+**Evidence:** See [`AD-DS/02-User-Creation`](../AD-DS/02-User-Creation/README.md) for screenshots of all 5 successful onboarding runs and the final verification query.
 
 ## Related
 
 - KB-007: User Offboarding Procedure
-- 👤 [Activity: Batch User Creation](../AD-DS/Activities/02-User-Creation/README.md)
-- 🛡️ [Activity: Security Groups](../AD-DS/Activities/01-Security-Groups/README.md)
+- 👤 [Activity: Batch User Creation](../AD-DS/02-User-Creation/README.md)
+- 🛡️ [Activity: Security Groups](../AD-DS/01-Security-Groups/README.md)

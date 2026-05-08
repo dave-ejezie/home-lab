@@ -60,4 +60,4 @@ gpresult /r
 ## Related
 
 - KB-001: Account Lockout (password policy interaction)
-- 🔐 [Activity: Group Policy Objects](../AD-DS/Activities/03-Group-Policies/README.md)
+- 🔐 [Activity: Group Policy Objects](../AD-DS/03-Group-Policies/README.md)
