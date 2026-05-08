@@ -1,4 +1,4 @@
-# 🏗️ Building a Homelab in Hyper-V: The Step-by-Step Guide
+# KB-009: 🏗️ Building a Homelab in Hyper-V: The Step-by-Step Guide
 
 This guide covers the complete, scratch-built setup of an Enterprise IT Support homelab using Microsoft Hyper-V. It includes the rationale behind every configuration choice to ensure you understand *why* we build it this way.
 

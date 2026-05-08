@@ -71,15 +71,15 @@ graph TB
 
 | # | Article | Phase | Status |
 |---|---------|-------|--------|
-| 1 | [Account Lockout Procedure](kb-articles/account-lockout.md) | Phase 1 | 📝 Template ready |
-| 2 | [GPO Management Guide](kb-articles/gpo-management.md) | Phase 1 | 🔜 Skeleton |
-| 3 | [DHCP Troubleshooting](kb-articles/dhcp-troubleshooting.md) | Phase 2 | 🔜 Skeleton |
-| 4 | [DNS Troubleshooting](kb-articles/dns-troubleshooting.md) | Phase 2 | 🔜 Skeleton |
-| 5 | [P1 Major Incident Procedure](kb-articles/p1-major-incident.md) | Phase 3 | 🔜 Skeleton |
-| 6 | [User Onboarding Procedure](kb-articles/onboarding.md) | Phase 5 | 🔜 Skeleton |
-| 7 | [User Offboarding Procedure](kb-articles/offboarding.md) | Phase 5 | 🔜 Skeleton |
-| 8 | [DNS Domain Join Failure](kb-articles/dns-domain-join-failure.md) | Phase 1 | ✅ Complete |
-| 9 | [Hyper-V Active Directory Lab Setup](kb-articles/hyper-v-lab-setup.md) | Phase 0 | ✅ Complete |
+| KB-001 | [Account Lockout Procedure](kb-articles/account-lockout.md) | Phase 1 | ✅ Complete |
+| KB-002 | [GPO Management Guide](kb-articles/gpo-management.md) | Phase 1 | ✅ Complete |
+| KB-003 | [DHCP Troubleshooting](kb-articles/dhcp-troubleshooting.md) | Phase 5 | 🔜 Skeleton |
+| KB-004 | [DNS Troubleshooting](kb-articles/dns-troubleshooting.md) | Phase 5 | 🔜 Skeleton |
+| KB-005 | [P1 Major Incident Procedure](kb-articles/p1-major-incident.md) | Phase 3 | 🔜 Skeleton |
+| KB-006 | [User Onboarding Procedure](kb-articles/onboarding.md) | Phase 1 | ✅ Complete |
+| KB-007 | [User Offboarding Procedure](kb-articles/offboarding.md) | Phase 1 | 🔜 Skeleton |
+| KB-008 | [DNS Domain Join Failure](kb-articles/dns-domain-join-failure.md) | Phase 1 | ✅ Complete |
+| KB-009 | [Hyper-V Active Directory Lab Setup](kb-articles/hyper-v-lab-setup.md) | Phase 0 | ✅ Complete |
 
 ---
 
