@@ -2,65 +2,78 @@
 
 | Field | Value |
 |---|---|
-| **Environment** | Microsoft Entra Admin Center |
-| **Ticket Type** | Incident (P3 - Standard) |
+| **Environment** | `helpdesk.lab` — M365 Admin Center / Entra Admin Center |
+| **Tool Used** | Entra Admin Center, Azure AD Connect |
 | **Status** | ✅ Complete |
-| **Date** | 10 May 2026 |
+| **Date** | 11 May 2026 |
 
 ---
 
-## The Scenario
-Jane Carter (IT System Admin) lost her iPhone over the weekend and bought a new one. She is trying to log into Microsoft 365 on her laptop, but the system is sending an MFA push notification to her old phone. She is completely locked out of her account.
+## Objective
+To securely revoke a compromised/lost Multi-Factor Authentication (MFA) session for a locked-out employee, forcing a re-registration on their new corporate device, while navigating a known Hybrid Identity password synchronization blocker.
+
+---
 
 ## ITIL Alignment & The "Why"
-In a corporate environment, Multi-Factor Authentication (MFA) is strictly enforced. When users lose or replace their devices, they cannot simply bypass MFA. A Helpdesk Analyst must securely verify the user's identity (usually via a phone call to their manager or checking their employee ID) and then revoke their existing MFA sessions so they can register their new device.
+In a zero-trust enterprise environment, MFA is the primary barrier against compromised credentials. When an employee loses their mobile device, the Helpdesk must perform a secure identity verification check before manually severing the trust between Microsoft Entra ID and the lost device. 
 
-This is a **high-security incident**. If you reset MFA for a hacker who is calling the Helpdesk pretending to be Jane, you have just compromised the entire network.
-
----
-
-## Execution 1: The Hybrid Identity "Gotcha" (Password Reset)
-
-Before Jane could even reach the MFA prompt, we encountered a classic Hybrid Identity block. 
-Because Jane was created via our automated on-premises PowerShell script, her account was flagged with **"User must change password at next logon"**.
-
-Entra ID (the cloud) sees this flag and blocks the login. However, because we are using standard Entra Connect sync without **Password Writeback** enabled, the cloud cannot securely send a new password back down to our local server. 
-
-**The Fix:**
-1. Jane must log into a local, domain-joined machine (`CLIENT01`).
-2. Windows forces the password change locally.
-3. Entra Connect syncs the *new*, permanent password up to the cloud within 2-5 minutes.
-4. Jane is then able to log into `portal.office.com`.
-
-*Note: Jane also required a **Microsoft 365 E5 Developer** license assigned in the M365 Admin Center before she could see any applications like Outlook or Teams.*
+This activity simulates a **High-Priority Incident (P2)**. Arbitrarily bypassing MFA for a caller without verification is the most common social engineering vector used by threat actors to compromise corporate networks. By forcing a "re-register" rather than disabling MFA, we ensure the user remains protected under conditional access policies.
 
 ---
 
-## Execution 2: Registering & Revoking the MFA Session
+## Execution: Root Cause Analysis (The Hybrid Identity Block)
 
-Once the password synced, Jane logged in and was prompted with *"More information required"* by Microsoft's Security Defaults. She registered her (simulated) Google Pixel 7 Pro using the Microsoft Authenticator app.
+Before Jane could reach the MFA prompt, her login attempt was immediately blocked with an "Incorrect Password" error, despite using the correct generated password.
 
-To simulate the "Lost Phone" ticket, the Admin must now revoke this device.
+### Step 1: Investigating the Sync Block
+Because Jane was provisioned via our local PowerShell script on `DC01`, her account was flagged with the `ChangePasswordAtLogon` attribute. Entra ID detected this flag and blocked access because our lab environment is not configured with **Password Writeback**. The cloud has no mechanism to write a new password back down to the local Domain Controller.
 
-1. Open the **[Microsoft Entra Admin Center](https://entra.microsoft.com)** as an Administrator.
-2. Navigate to **Identity** -> **Users** -> **All users** -> **Jane Carter**.
-3. Open the **Authentication methods** blade.
+### Step 2: The Resolution (Local Password Reset)
+To clear the flag and allow Entra ID to authenticate Jane:
+1. Jane was instructed to log into a local, domain-joined machine (`CLIENT01`).
+2. Windows forced the password change locally.
+3. The new password hash synced to the cloud during the next Delta cycle (2-5 minutes).
+4. Jane was successfully granted access to `portal.office.com` and prompted to register her new device for MFA via Security Defaults.
 
-> **Proof of Execution 1:** Jane's registered Authenticator app on her Pixel 7 Pro.
+*(Note: Jane also required a **Microsoft 365 E5 Developer** license assigned in the M365 Admin Center before she could see any applications like Outlook or Teams).*
+
+---
+
+## Execution: MFA Session Revocation
+
+With Jane's new phone successfully registered, the simulated "lost phone" ticket was initiated by the Admin to revoke the device.
+
+### Step 1: Locating the Authentication Methods
+Navigated to **[Microsoft Entra Admin Center](https://entra.microsoft.com)** -> **Identity** -> **Users** -> **Jane Carter** -> **Authentication methods**.
+
+> **Proof of Execution 1:** Jane's actively registered Authenticator app on her Pixel 7 Pro.
 > 
 > ![Jane Auth Method](../screenshots/M365-jane-auth-method.png)
 
-4. Click the **Require re-register MFA** button at the top of the screen.
+### Step 2: Forcing Re-Registration
+To sever the trust with the device, the **Require re-register MFA** command was executed.
 
-> **Proof of Execution 2:** The Admin confirmation pop-up. Clicking this severs the trust with Jane's lost device.
+> **Proof of Execution 2:** The Admin confirmation pop-up. Clicking this instantly invalidates the current session token on the device.
 > 
 > ![MFA Reset Pop-up](../screenshots/M365-mfa-reset.png)
 
-5. The old authentication method is wiped. The very next time Jane tries to log in, she will be forced to scan a brand new QR code with her *new* phone.
+### Step 3: Verification
+The old authentication method was wiped from Entra ID. The very next time Jane attempts to authenticate, the system will challenge her to scan a brand new QR code.
 
-> **Proof of Execution 3:** The authentication method is successfully removed.
+> **Proof of Execution 3:** The authentication method is successfully removed and the account is secure.
 > 
 > ![MFA Reset Confirmation](../screenshots/M365-mfa-reset-confirmation.png)
+
+---
+
+## Final Incident Resolution Report
+
+> **ServiceNow Incident:** INC0012948  
+> **Category:** Identity & Access | **Subcategory:** MFA / Authenticator  
+> **Priority:** P2 — High (User Locked Out)  
+>   
+> **Resolution Notes:**  
+> User Jane Carter reported a lost mobile device and inability to pass MFA prompts. Identity was securely verified via line manager approval. Investigated initial login failure and determined a Hybrid Identity Password Writeback block was active; guided user to change password on local domain-joined machine. Once password hash synced to Entra ID, user successfully registered new device. Executed 'Require re-register MFA' command in Entra Admin Center to revoke the lost device session. Issue resolved, user has regained access to M365 applications.
 
 ---
 

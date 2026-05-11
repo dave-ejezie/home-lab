@@ -40,7 +40,7 @@
 **Competencies**
 - [x] Manage licences — assign, remove, and identify unused ones
 - [x] Reset MFA for a locked-out user securely
-- [ ] Create and manage shared mailboxes and distribution lists
+- [x] Create and manage shared mailboxes and distribution lists
 - [ ] Understand the difference between Teams and a distribution group
 - [ ] Navigate Google Workspace admin basics
 - [x] Configure Hybrid Identity using Entra Connect (Azure AD Connect)
@@ -49,7 +49,7 @@
 - [x] **Lab 2.1** - M365 Admin Centre Fundamentals
 - [x] **Lab 2.2** - Hybrid Identity Sync (Entra Connect)
 - [x] **Lab 2.3** - MFA Reset (Critical NHS Skill)
-- [ ] **Lab 2.4** - Shared Mailboxes & Distribution Lists
+- [x] **Lab 2.4** - Shared Mailboxes & Distribution Lists
 - [ ] **Lab 2.5** - Conditional Access Troubleshooting
 - [ ] **Lab 2.6** - Google Workspace Comparison (Optional)
 
